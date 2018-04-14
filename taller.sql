@@ -28,6 +28,13 @@ ALTER TABLE PILOT_INFORMATION ADD CHECK (ICAO_LEVE in ('Nivel 1 Pre-elementary',
                                                        'Nivel 5 Extended',
                                                        'Nivel 6 Expert'));
 
+ ALTER TABLE PILOT_INFORMATION ADD CHECK (POSITION in ('Comandante',
+                                                       'Primer Oficial'));
+                                                           
+ALTER TABLE PILOT_INFORMATION ADD CHECK (LICENSE_TYPE in ('CPL',
+                                                           'IFR',
+                                                           'ME',
+                                                           'ATPL'));
 
 -- -------------------------------------------------------------------
 CREATE SEQUENCE aircrafts_type_SEC
@@ -68,6 +75,11 @@ CREATE SEQUENCE document_type_SEC
     ID NUMBER PRIMARY KEY,
     DESCRIPTION VARCHAR2(256)
  );
+ 
+ALTER TABLE DOCUMENT_TYPE ADD CHECK (DESCRIPTION in ('Cédula',
+                                                     'Pasaporte',
+                                                     'DNI',
+                                                     'Cédula Extranjería'));
  
  -- --------------------------------------------------------------------
 
@@ -144,8 +156,15 @@ CREATE SEQUENCE STATE_employee_sec
     DESCRIPTION VARCHAR2(256)
  );
 
-
-
+ ALTER TABLE STATE_EMPLOYEE ADD CHECK (DESCRIPTION in ('EN VUELO',
+                                                       'ACTIVO',
+                                                       'INACTIVO',
+                                                       'JUBILADO',
+                                                       'SUSPENDIDO',
+                                                       'DESPEDIDO',
+                                                       'ENTRENAMIENTO',
+                                                       'LICENCIA',
+                                                       'VACACIONES'));
 
 -- ----------------------------------------------------------------------
 CREATE SEQUENCE employee_SEC
