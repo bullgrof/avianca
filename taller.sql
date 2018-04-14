@@ -19,7 +19,14 @@ CREATE SEQUENCE pilots_inf
   
 -- NEXVALE ->LLAMAR PRIMERO
 -- CURLVAL
-INSERT INTO PILOT_INFORMATION(pilots_inf.NEXTVAL,'DATOS DE LA TABLA')
+-- INSERT INTO PILOT_INFORMATION(pilots_inf.NEXTVAL,'DATOS DE LA TABLA')
+
+ALTER TABLE PILOT_INFORMATION ADD CHECK (ICAO_LEVE in ('Nivel 1 Pre-elementary',
+                                                       'Nivel 2 Elementary',
+                                                       'Nivel 3 Pre-Operational',
+                                                       'Nivel 4 Operational',
+                                                       'Nivel 5 Extended',
+                                                       'Nivel 6 Expert'));
 
 
 -- -------------------------------------------------------------------
@@ -118,20 +125,13 @@ CREATE SEQUENCE employee_type_sec
  NOCYCLE;
  
  
- 
-
--- ----------------------------------------------------------------------
-CREATE SEQUENCE employee_type_sec
- START WITH     1
- INCREMENT BY   1
- NOCACHE
- NOCYCLE;
- 
  CREATE TABLE EMPLOYEE_TYPES(
     ID NUMBER PRIMARY KEY,
     DESCRIPTION VARCHAR2(256)
  );
- 
+  
+  ALTER TABLE EMPLOYEE_TYPES ADD CHECK (DESCRIPTION in ('Piloto',
+                                                       'Auxiliar de Servicio'));
  -- ----------------------------------------------------------------------
 CREATE SEQUENCE STATE_employee_sec
  START WITH     1
